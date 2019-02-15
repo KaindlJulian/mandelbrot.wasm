@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "serve": "webpack-dev-server"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -14,13 +14,12 @@
   "author": "Julian Kaindl",
   "license": "Apache-2.0",
   "devDependencies": {
-    "webpack": "^4.16.3",
+    "webpack": "^4.29.4",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",
     "copy-webpack-plugin": "^4.5.2"
   },
   "dependencies": {
-    "@juliankaindl/mandelbrot-wasm": "^0.1.1",
-    "hello-wasm-pack": "^0.1.0"
+    "@juliankaindl/mandelbrot-wasm": "^0.1.1"
   }
 }
