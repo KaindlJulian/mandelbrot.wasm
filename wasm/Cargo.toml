@@ -4,11 +4,18 @@ version = "0.1.0"
 authors = ["KaindlJulian <kaindl745@gmail.com>"]
 description = "A rust lib to calculate the mandelbrot set"
 edition = "2018"
-license = "MIT/Apache-2.0"
+license = "Apache-2.0"
 repository = "https://github.com/KaindlJulian/mandelbrot.wasm"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-wasm-bindgen = "0.2.34"
+wasm-bindgen = "0.2.37"
+
+[dependencies.web-sys]
+version = "0.3.14"
+features = [
+  'ImageData',
+  'CanvasRenderingContext2d',
+]
