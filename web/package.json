@@ -1,0 +1,26 @@
+{
+  "name": "mandelbrot-wasm-web",
+  "version": "0.1.0",
+  "description": "A mandelbrot generator website",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "serve": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KaindlJulian/mandelbrot.wasm.git"
+  },
+  "author": "Julian Kaindl",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
+    "copy-webpack-plugin": "^4.5.2"
+  },
+  "dependencies": {
+    "@juliankaindl/mandelbrot-wasm": "^0.1.1",
+    "hello-wasm-pack": "^0.1.0"
+  }
+}
