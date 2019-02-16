@@ -20,30 +20,33 @@ pub fn draw(
 fn get_julia_set(width: u32, height: u32, c: Complex) -> Vec<u8> {
     let mut data = Vec::new();
 
-    let param_i = 1.5;
-    let param_r = 1.5;
-    let scale = 0.005;
+    let param_i = 0.0;
+    let param_r = 0.0;
+    let scale = 1.0;
 
     for x in 0..width {
         for y in 0..height {
-            let z = Complex {
-                real: y as f64 * scale - param_r,
-                imaginary: x as f64 * scale - param_i,
-            };
-            let iter_index = get_iter_index(z, c);
-            data.push((iter_index / 4) as u8);
-            data.push((iter_index / 2) as u8);
-            data.push(iter_index as u8);
-            data.push(255);
+
+            let real = map_pixel(x as i16, 0, width as i16, -2, 2);
+            let imaginary = map_pixel(y as i16, 0, height as i16, -2, 2);
+            let c = Complex { real, imaginary};
+            let iter_index = get_iter_index(c);
+
+            data.push((iter_index / 4) as u8);  //R
+            data.push((iter_index / 2) as u8);  //G
+            data.push(iter_index as u8);        //B
+            data.push(255);                     //A
         }
     }
 
     data
 }
 
-fn get_iter_index(z: Complex, c: Complex) -> u32 {
+fn get_iter_index(c: Complex) -> u32 {
     let mut iter_index: u32 = 0;
-    let mut z = z;
+    let real = 0.0;
+    let imaginary = 0.0;
+    let mut z = Complex { real, imaginary };
     while iter_index < 900 {
         if z.norm() > 2.0 {
             break;
@@ -52,6 +55,11 @@ fn get_iter_index(z: Complex, c: Complex) -> u32 {
         iter_index += 1;
     }
     iter_index
+}
+
+fn map_pixel(x: i16, min1: i16, max1: i16, min2: i16, max2: i16) -> f64 {
+    let a = ((x as f64) - (min1 as f64)) / ((max1 as f64) - (min1 as f64)) * ((max2 as f64) - (min2 as f64)) + (min2 as f64);
+    a
 }
 
 #[derive(Clone, Copy, Debug)]
