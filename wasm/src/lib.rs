@@ -2,6 +2,7 @@ use std::ops::Add;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::Clamped;
 use web_sys::{CanvasRenderingContext2d, ImageData};
+mod color;
 
 #[wasm_bindgen]
 pub fn draw(
@@ -12,30 +13,35 @@ pub fn draw(
     imaginary: f64,
 ) -> Result<(), JsValue> {
     let c = Complex { real, imaginary };
-    let mut data = get_julia_set(width, height, c);
+    let mut data = get_mb_set(width, height, c);
     let data = ImageData::new_with_u8_clamped_array_and_sh(Clamped(&mut data), width, height)?;
     ctx.put_image_data(&data, 0.0, 0.0)
 }
 
-fn get_julia_set(width: u32, height: u32, c: Complex) -> Vec<u8> {
+fn get_mb_set(width: u32, height: u32, c: Complex) -> Vec<u8> {
     let mut data = Vec::new();
 
-    let param_i = 0.0;
-    let param_r = 0.0;
-    let scale = 1.0;
-
-    for x in 0..width {
-        for y in 0..height {
-
-            let real = map_pixel(x as i16, 0, width as i16, -2, 2);
-            let imaginary = map_pixel(y as i16, 0, height as i16, -2, 2);
+    for x in 0..height {
+        for y in 0..width {
+            let real = scale(y as f64, 0.0, width as f64, -2.0, 2.0);
+            let imaginary = scale(x as f64, 0.0, height as f64, 2.0, -2.0);
             let c = Complex { real, imaginary};
             let iter_index = get_iter_index(c);
 
-            data.push((iter_index / 4) as u8);  //R
-            data.push((iter_index / 2) as u8);  //G
-            data.push(iter_index as u8);        //B
-            data.push(255);                     //A
+            let mut hsl = color::HSL::default();
+
+            if (iter_index == 1000) {
+                
+            } else {
+                let mut hue = 255.0 * iter_index as f64 / 1000.0;
+                hue = hue.sqrt() * 25.0;
+                hsl = color::HSL {h: hue, s: 1.0, l: 0.5};
+            }
+            let rgb = hsl.to_rgba();
+            data.push(rgb.0);
+            data.push(rgb.1);
+            data.push(rgb.2);
+            data.push(rgb.3);
         }
     }
 
@@ -44,11 +50,9 @@ fn get_julia_set(width: u32, height: u32, c: Complex) -> Vec<u8> {
 
 fn get_iter_index(c: Complex) -> u32 {
     let mut iter_index: u32 = 0;
-    let real = 0.0;
-    let imaginary = 0.0;
-    let mut z = Complex { real, imaginary };
-    while iter_index < 900 {
-        if z.norm() > 2.0 {
+    let mut z = Complex { real: 0.0, imaginary: 0.0 };
+    while iter_index < 1000 {
+        if z.norm() > 4.0 { // when |z| is out of a circle with circ. 2 
             break;
         }
         z = z.square() + c;
@@ -57,9 +61,8 @@ fn get_iter_index(c: Complex) -> u32 {
     iter_index
 }
 
-fn map_pixel(x: i16, min1: i16, max1: i16, min2: i16, max2: i16) -> f64 {
-    let a = ((x as f64) - (min1 as f64)) / ((max1 as f64) - (min1 as f64)) * ((max2 as f64) - (min2 as f64)) + (min2 as f64);
-    a
+fn scale(x: f64, min1: f64, max1: f64, min2: f64, max2: f64) -> f64 {
+    (x - min1) / (max1 - min1) * (max2 - min2) + min2
 }
 
 #[derive(Clone, Copy, Debug)]

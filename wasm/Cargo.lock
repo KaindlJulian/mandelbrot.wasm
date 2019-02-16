@@ -94,6 +94,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "hsl"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
 name = "humantime"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -131,6 +136,7 @@ dependencies = [
 name = "mandelbrot-wasm"
 version = "0.1.0"
 dependencies = [
+ "hsl 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "wasm-bindgen 0.2.37 (registry+https://github.com/rust-lang/crates.io-index)",
  "web-sys 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -416,6 +422,7 @@ dependencies = [
 "checksum failure 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "795bd83d3abeb9220f257e597aa0080a508b27533824adf336529648f6abf7e2"
 "checksum failure_derive 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "ea1063915fd7ef4309e222a5a07cf9c319fb9c7836b1f89b85458672dbb127e1"
 "checksum heck 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)" = "20564e78d53d2bb135c343b3f47714a56af2061f1c928fdb541dc7b9fdd94205"
+"checksum hsl 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "575fb7f1167f3b88ed825e90eb14918ac460461fdeaa3965c6a50951dee1c970"
 "checksum humantime 1.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "3ca7e5f2e110db35f93b837c81797f3714500b81d517bf20c431b16d3ca4f114"
 "checksum js-sys 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)" = "4dbd938475b240c421c270c2c0dd0f9acc3642e02d7419afd37587a34cd04e40"
 "checksum lazy_static 1.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "a374c89b9db55895453a74c1e38861d9deec0b01b405a82516e9d5de4820dea1"
