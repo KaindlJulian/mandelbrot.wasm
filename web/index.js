@@ -3,4 +3,5 @@ import * as wasm from "mandelbrot-wasm";
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-wasm.draw(ctx, 600, 600, -0.15, 0.65);
+
+wasm.draw(ctx, canvas.scrollWidth, canvas.scrollHeight, 0.25001, 0.0);
