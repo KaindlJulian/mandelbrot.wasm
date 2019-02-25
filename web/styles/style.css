@@ -1,0 +1,47 @@
+* {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+/*NAVBAR*/
+
+.navbar {
+    background: linear-gradient(272.88deg, #000000 27.07%, #BD1700 78.45%);
+    height: 4rem;
+    color: #fff;
+}
+
+.navbar-title {
+    margin: 0;
+    margin-left: 1rem;
+}
+
+.git-btn {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 28px;
+    font-size: 24px;
+    height: 52px;
+    overflow: hidden;
+    margin-right: 1rem;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none !important;
+}
+
+.git-btn span {
+    color: #fff;
+}
+
+.git-ico {
+    height: 35px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

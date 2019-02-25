@@ -3,20 +3,28 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="styles/normalize.css">
-  <link rel="stylesheet" href="styles/simple-grid.css">
   <link rel="stylesheet" href="styles/style.css">
-  <title>mandelbrot.wasm</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <title>Mandelbrot</title>
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <canvas id="canvas" height="1000px" width="1000px"></canvas>
-      </div>
-    </div>
-  </div>
+  <header class="navbar">
+    <section class="navbar-section">
+      <h2 class="navbar-title">Mandelbrot Generator</h2>
+    </section>
+    <section class="navbar-section">
+      <a href="https://github.com/KaindlJulian/mandelbrot.wasm" class="git-btn">
+        <div class="d-flex mx-2" style="align-items: center; height: 100%;">
+          <img src="/assets/github-logo.svg" alt="github-icon" class="git-ico">
+          <span>Source on Github</span>
+        </div>
+      </a>
+    </section>
+  </header>
+
+  <canvas id="canvas" height="700px" width="700px"></canvas>
+
 </body>
 
 <script src="./bootstrap.js"></script>
