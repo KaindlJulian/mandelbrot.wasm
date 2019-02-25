@@ -1,8 +1,15 @@
+/*wanted to just make a few tweaks*/
+
+/*ended up in an utter mess*/
+
 * {
     font-family: 'Roboto', sans-serif !important;
 }
 
-/*NAVBAR*/
+html body {
+    height: 100vh;
+    background-color: rgb(209, 209, 209);
+}
 
 .navbar {
     background: linear-gradient(272.88deg, #000000 27.07%, #BD1700 78.45%);
@@ -40,8 +47,65 @@
 }
 
 canvas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    background: linear-gradient(313deg, #a3332e, #562929);
+    float: right;
+    border-radius: 16px;
+    margin: 8px;
+}
+
+.fullpage {
+    height: calc(100% - 80px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    display: block !important;
+    height: 700px;
+    width: 1400px;
+    border-radius: 16px !important;
+}
+
+.container {
+    border-radius: 16px !important;
+}
+
+.content {
+    margin: 32px;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+    border-color: rgba(116, 14, 1, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(116, 14, 1, 0.6);
+    outline: 0 none;
+}
+
+.zoom-title {
+    margin-top: 64px;
+}
+
+.zoom-icons {
+    margin-top: 32px;
+}
+
+.zoom-icons img {
+    margin-right: 16px;
+    cursor: pointer;
 }

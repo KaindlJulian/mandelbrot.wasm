@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="styles/style.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
   <title>Mandelbrot</title>
 </head>
 
@@ -23,7 +24,39 @@
     </section>
   </header>
 
-  <canvas id="canvas" height="700px" width="700px"></canvas>
+  <div class="fullpage">
+    <div class="card">
+      <div class="columns col-gapless">
+        <div class="column col-6">
+          <div class="content">
+            <h2>Number</h2>
+            <div class="divider"></div>
+            <div class="form-group">
+              <label class="form-label" for="real">Real</label>
+              <input class="form-input" type="number" step="0.1" id="real" placeholder="Real" value="0">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="imaginary">Imaginary</label>
+              <input class="form-input" type="number" step="0.1" id="imaginary" placeholder="Imaginary" value="0">
+            </div>
+            <h2 class="zoom-title">Zoom</h2>
+            <div class="divider"></div>
+            <div class="form-group">
+              <label class="form-label" for="zoom">Zoom</label>
+              <input class="form-input" type="number" step="0.1" id="zoom" placeholder="Zoom" value="10e-0">
+            </div>
+            <div class="d-flex zoom-icons" style="justify-content: start;">
+              <img height="64" src="/assets/zoom-in.svg" alt="zoom-in">
+              <img height="64" src="/assets/zoom-out.svg" alt="zoom-out">
+            </div>
+          </div>
+        </div>
+        <div class="column col-6">
+          <canvas id="canvas" height="684px" width="684px"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
