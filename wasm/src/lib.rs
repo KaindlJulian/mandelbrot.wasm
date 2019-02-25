@@ -25,17 +25,21 @@ fn get_mb_set(width: u32, height: u32, c: Complex) -> Vec<u8> {
         for y in 0..width {
             let real = scale(y as f64, 0.0, width as f64, -2.0, 2.0);
             let imaginary = scale(x as f64, 0.0, height as f64, 2.0, -2.0);
-            let c = Complex { real, imaginary};
+            let c = Complex { real, imaginary };
             let iter_index = get_iter_index(c);
 
+            // coloring
             let mut hsl = color::HSL::default();
-
             if (iter_index == 1000) {
-                
+
             } else {
                 let mut hue = 255.0 * iter_index as f64 / 1000.0;
                 hue = hue.sqrt() * 25.0;
-                hsl = color::HSL {h: hue, s: 1.0, l: 0.5};
+                hsl = color::HSL {
+                    h: hue,
+                    s: 1.0,
+                    l: 0.5,
+                };
             }
             let rgb = hsl.to_rgba();
             data.push(rgb.0);
@@ -50,9 +54,13 @@ fn get_mb_set(width: u32, height: u32, c: Complex) -> Vec<u8> {
 
 fn get_iter_index(c: Complex) -> u32 {
     let mut iter_index: u32 = 0;
-    let mut z = Complex { real: 0.0, imaginary: 0.0 };
+    let mut z = Complex {
+        real: 0.0,
+        imaginary: 0.0,
+    };
     while iter_index < 1000 {
-        if z.norm() > 4.0 { // when |z| is out of a circle with circ. 2 
+        if z.norm() > 4.0 {
+            // when |z| is out of a circle with circ. 2 -> cant be in set
             break;
         }
         z = z.square() + c;

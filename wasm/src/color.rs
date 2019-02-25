@@ -7,8 +7,12 @@ pub struct HSL {
 
 // defaults to black
 impl Default for HSL {
-    fn default () -> HSL {
-        HSL{h: 0.0, s: 0.0, l: 0.0}
+    fn default() -> HSL {
+        HSL {
+            h: 0.0,
+            s: 0.0,
+            l: 0.0,
+        }
     }
 }
 
@@ -30,10 +34,12 @@ impl HSL {
         };
         let p = 2.0 * l - q;
 
-        (percent_to_byte(hue_to_rgb(p, q, h + 1.0 / 3.0)),
-         percent_to_byte(hue_to_rgb(p, q, h)),
-         percent_to_byte(hue_to_rgb(p, q, h - 1.0 / 3.0)),
-         255)
+        (
+            percent_to_byte(hue_to_rgb(p, q, h + 1.0 / 3.0)),
+            percent_to_byte(hue_to_rgb(p, q, h)),
+            percent_to_byte(hue_to_rgb(p, q, h - 1.0 / 3.0)),
+            255,
+        )
     }
 }
 
