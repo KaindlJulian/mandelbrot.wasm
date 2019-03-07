@@ -4,6 +4,8 @@ use wasm_bindgen::Clamped;
 use web_sys::{CanvasRenderingContext2d, ImageData};
 mod color;
 
+const MAX_ITERATIONS: u32 = 1000;
+
 #[wasm_bindgen]
 pub fn draw(
     ctx: &CanvasRenderingContext2d,
@@ -11,29 +13,29 @@ pub fn draw(
     height: u32,
     real: f64,
     imaginary: f64,
+    zoom: f64
 ) -> Result<(), JsValue> {
     let c = Complex { real, imaginary };
-    let mut data = get_mb_set(width, height, c);
+    let mut data = get_mb_set(width, height, c, zoom);
     let data = ImageData::new_with_u8_clamped_array_and_sh(Clamped(&mut data), width, height)?;
     ctx.put_image_data(&data, 0.0, 0.0)
 }
 
-fn get_mb_set(width: u32, height: u32, c: Complex) -> Vec<u8> {
+fn get_mb_set(width: u32, height: u32, c: Complex, zoom: f64) -> Vec<u8> {
     let mut data = Vec::new();
 
     for x in 0..height {
         for y in 0..width {
-            let real = scale(y as f64, 0.0, width as f64, -2.0, 2.0);
-            let imaginary = scale(x as f64, 0.0, height as f64, 2.0, -2.0);
+            let adj = 2.0 / zoom;
+            let real = scale(y as f64, 0.0, width as f64, c.real - adj, c.real + adj);
+            let imaginary = scale(x as f64, 0.0, height as f64, c.imaginary + adj, c.imaginary - adj);
             let c = Complex { real, imaginary };
             let iter_index = get_iter_index(c);
 
             // coloring
             let mut hsl = color::HSL::default();
-            if (iter_index == 1000) {
-
-            } else {
-                let mut hue = 255.0 * iter_index as f64 / 1000.0;
+            if (iter_index != MAX_ITERATIONS) {
+                let mut hue = 255.0 * iter_index as f64 / MAX_ITERATIONS as f64;
                 hue = hue.sqrt() * 25.0;
                 hsl = color::HSL {
                     h: hue,
@@ -58,7 +60,7 @@ fn get_iter_index(c: Complex) -> u32 {
         real: 0.0,
         imaginary: 0.0,
     };
-    while iter_index < 1000 {
+    while iter_index < MAX_ITERATIONS {
         if z.norm() > 4.0 {
             // when |z| is out of a circle with circ. 2 -> cant be in set
             break;
