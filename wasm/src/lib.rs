@@ -26,7 +26,7 @@ fn get_mb_set(width: u32, height: u32, c: Complex, zoom: f64) -> Vec<u8> {
 
     for x in 0..height {
         for y in 0..width {
-            let adj = 2.0 / zoom;
+            let adj = if zoom <= 0.0 { 2.0 } else { 2.0 / zoom };
             let real = scale(y as f64, 0.0, width as f64, c.real - adj, c.real + adj);
             let imaginary = scale(x as f64, 0.0, height as f64, c.imaginary + adj, c.imaginary - adj);
             let c = Complex { real, imaginary };
