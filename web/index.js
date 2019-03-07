@@ -1,5 +1,4 @@
-import * as wasm from "mandelbrot-wasm";
-//import * as wasm from "@juliankaindl/mandelbrot-wasm";
+import * as wasm from "@juliankaindl/mandelbrot-wasm";
 
 // initial drawing
 const canvas = document.getElementById('canvas');
