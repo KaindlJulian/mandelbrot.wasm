@@ -39,15 +39,13 @@
               <label class="form-label" for="imaginary">Imaginary</label>
               <input class="form-input" type="number" step="0.1" id="imaginary" placeholder="Imaginary" value="0">
             </div>
+            <button class="btn btn-primary mt-2 apply-btn" id="apply-btn">Apply</button>
+            <button class="btn btn-primary mt-2 ml-2 apply-btn" id="reset-btn">Reset</button>
             <h2 class="zoom-title">Zoom</h2>
             <div class="divider"></div>
-            <div class="form-group">
-              <label class="form-label" for="zoom">Zoom</label>
-              <input class="form-input" type="number" step="0.1" id="zoom" placeholder="Zoom" value="10e-0">
-            </div>
             <div class="d-flex zoom-icons" style="justify-content: start;">
-              <img height="64" src="/assets/zoom-in.svg" alt="zoom-in">
-              <img height="64" src="/assets/zoom-out.svg" alt="zoom-out">
+              <img id="zoom-in" height="64" src="/assets/zoom-in.svg" alt="zoom-in">
+              <img id="zoom-out" height="64" src="/assets/zoom-out.svg" alt="zoom-out">
             </div>
           </div>
         </div>

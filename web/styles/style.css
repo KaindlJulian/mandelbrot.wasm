@@ -109,3 +109,13 @@ input[type="color"]:focus,
     margin-right: 16px;
     cursor: pointer;
 }
+
+.apply-btn {
+    background-color: #741814 !important;
+    border-color: #741814 !important;
+    width: 150px;
+}
+
+.divider {
+    border-color: #818181 !important;
+}
